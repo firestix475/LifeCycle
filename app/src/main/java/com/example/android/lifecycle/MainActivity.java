@@ -51,78 +51,64 @@ public class MainActivity extends AppCompatActivity {
         logAndAppend(ON_CREATE);
     }
 
-    // TODO (2) Override onStart, call super.onStart, and call logAndAppend with ON_START
-
     @Override
-    protected void onStart()
-    {
+    protected void onStart() {
         super.onStart();
+        // TODO (2) Override onStart, call super.onStart, and call logAndAppend with ON_START
         logAndAppend(ON_START);
     }
 
-    // TODO (3) Override onResume, call super.onResume, and call logAndAppend with ON_RESUME
-
     @Override
-    protected void onResume()
-    {
+    protected void onResume() {
         super.onResume();
+        // TODO (3) Override onResume, call super.onResume, and call logAndAppend with ON_RESUME
         logAndAppend(ON_RESUME);
     }
 
-    // TODO (4) Override onPause, call super.onPause, and call logAndAppend with ON_PAUSE
-
     @Override
-    protected void onPause()
-    {
+    protected void onPause() {
         super.onPause();
+        // TODO (4) Override onPause, call super.onPause, and call logAndAppend with ON_PAUSE
         logAndAppend(ON_PAUSE);
     }
 
-    // TODO (5) Override onStop, call super.onStop, and call logAndAppend with ON_STOP
-
     @Override
-    protected void onStop()
-    {
+    protected void onStop() {
         super.onStop();
+        // TODO (5) Override onStop, call super.onStop, and call logAndAppend with ON_STOP
         logAndAppend(ON_STOP);
     }
 
-    // TODO (6) Override onRestart, call super.onRestart, and call logAndAppend with ON_RESTART
-
     @Override
-    protected void onRestart()
-    {
+    protected void onRestart() {
         super.onRestart();
+        // TODO (6) Override onRestart, call super.onRestart, and call logAndAppend with ON_RESTART
         logAndAppend(ON_RESTART);
     }
 
-    // TODO (7) Override onDestroy, call super.onDestroy, and call logAndAppend with ON_DESTROY
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // TODO (7) Override onDestroy, call super.onDestroy, and call logAndAppend with ON_DESTROY
+        logAndAppend(ON_DESTROY);
+    }
 
     @Override
-    protected void onDestroy()
-    {
-        super.onDestroy();
-        logAndAppend(ON_DESTROY);
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        logAndAppend(ON_SAVE_INSTANCE_STATE);
+        String contents = mLifecycleDisplay.getText().toString();
+        outState.putString("contents", contents);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        mLifecycleDisplay.setText(savedInstanceState.getString("contents"));
+        super.onRestoreInstanceState(savedInstanceState);
     }
 
     // TODO (8) Figure out and implement how to save text displayed after rotating the device
         //hint onSaveInstanceState
-
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState)
-    {
-        outState.putString("logs", mLifecycleDisplay.getText() + "");
-        super.onSaveInstanceState(outState);
-    }
-
-    @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState)
-    {
-        mLifecycleDisplay.setText(savedInstanceState.getString("logs"));
-        super.onRestoreInstanceState(savedInstanceState);
-    }
-
     /**
      * Logs to the console and appends the lifecycle method name to the TextView so that you can
      * view the series of method callbacks that are called both from the app and from within
